@@ -5,16 +5,23 @@ metadata:
   labels:
     name: kuard
 spec:
+  volumes:
+    - name: kuard-data
+      hostPath:
+        path: "/var/lib/kuard"
   containers:
     - name: kuard
       image: gcr.io/kuard-239816/kuard-amd64:1
+      volumeMounts:
+        - mountPath: "/data"
+          name: "kuard-data"
       resources:
-        request:
+        requests:
           memory: "128Mi"
           cpu: "500m"
         limits:
-          memory: "128Mi"
-          cpu: "500m"
+          memory: "256Mi"
+          cpu: "1000m"
       livenessProbe:
         httpGet:
           path: /healthy

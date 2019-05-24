@@ -9,12 +9,12 @@ spec:
     - name: kuard
       image: gcr.io/kuard-239816/kuard-amd64:1
       resources:
-        request:
+        requests:
           memory: "128Mi"
           cpu: "500m"
         limits:
-          memory: "256Mi"
-          cpu: "1000m"
+          memory: "128Mi"
+          cpu: "500m"
       livenessProbe:
         httpGet:
           path: /healthy
